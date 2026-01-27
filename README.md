@@ -18,4 +18,5 @@
 
 
 
-[![Stargazers over time](https://starchart.cc/momika233/Burp_Suite-Antigravity_AI-Bug_Bounty_Hunter.svg)](https://starchart.cc/momika233/Burp_Suite-Antigravity_AI-Bug_Bounty_Hunter)
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/momika233/Burp_Suite-Antigravity_AI-Bug_Bounty_Hunter.svg?variant=adaptive)](https://starchart.cc/momika233/Burp_Suite-Antigravity_AI-Bug_Bounty_Hunter)
