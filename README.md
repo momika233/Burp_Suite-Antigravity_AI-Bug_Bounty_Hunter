@@ -5,29 +5,9 @@
 
 ## Article:[https://x.com/momika233/status/2013984992481673479](https://x.com/momika233/status/2013984992481673479)
 
-# Code Architecture
-┌─────────────────────────────────────────────────────────────────┐
-│                    Burp Suite Extension                         │
-│                                                                  │
-│  ┌─────────────────┐    ┌─────────────────┐    ┌─────────────┐ │
-│  │   HTTP Listener │───►│ Regex Fast-Path │───►│ Add Issue   │ │
-│  │  (IHttpListener)│    │ HIGH_CONFIDENCE │    │ (quick hit) │ │
-│  └─────────────────┘    └────────┬────────┘    └─────────────┘ │
-│                                  │                              │
-│                                  ▼                              │
-│                         ┌─────────────────┐                    │
-│                         │   LLM Analysis  │                    │
-│                         │ (Claude Opus)   │                    │
-│                         │ localhost:8045  │                    │
-│                         └────────┬────────┘                    │
-│                                  │                              │
-│                                  ▼                              │
-│                         ┌─────────────────┐                    │
-│                         │  Parse JSON     │                    │
-│                         │  Add AI Issues  │                    │
-│                         └─────────────────┘                    │
-└─────────────────────────────────────────────────────────────────┘
+
 # Optimization log
+
 ## 2026.2.5 
 ### 1. De duplication mechanism: Use MD5 hash to track reported (URL+Issue Name) and avoid duplicate reports
 ### 2. Response volume sampling: Intelligent extraction of up to 3KB response content: first 1500 characters+keyword context+last 500 characters
@@ -35,41 +15,12 @@
 ### 4. JS endpoint extraction: 17 regular patterns to automatically extract API endpoints from JS files
 ### 5. IDOR automatic testing: IDOR automatic testing performs ID replacement testing on discovered endpoints (10 test values)
 ### 6. Regular rules for deduplication: Removed 4 duplicate detection rules from the original code
-##  workflow
-┌─────────────────────────────────────────────────────────────────┐
-│                    HTTP Response Received                        │
-└─────────────────────────────────────────────────────────────────┘
-                               │
-              ┌────────────────┼────────────────┐
-              ▼                                  ▼
-   ┌──────────────────┐               ┌──────────────────┐
-   │ Content-Type:    │               │ Content-Type:    │
-   │ html/json/xml    │               │ javascript       │
-   └────────┬─────────┘               └────────┬─────────┘
-            │                                   │
-            ▼                                   ▼
-   ┌──────────────────┐               ┌──────────────────┐
-   │ 1. Regex Check   │               │ JS Endpoint      │
-   │ 2. LLM Analysis  │               │ Extraction       │
-   │    (with body    │               └────────┬─────────┘
-   │     sample)      │                        │
-   └────────┬─────────┘                        ▼
-            │                         ┌──────────────────┐
-            │                         │ IDOR Testing     │
-            │                         │ (ID replacement) │
-            │                         └────────┬─────────┘
-            │                                   │
-            ▼                                   ▼
-   ┌──────────────────────────────────────────────────┐
-   │              Deduplication Check                  │
-   │         (Hash: URL + Issue Name)                  │
-   └──────────────────────────────────────────────────┘
-                               │
-                               ▼
-   ┌──────────────────────────────────────────────────┐
-   │              Add to Burp Issues                   │
-   └──────────────────────────────────────────────────┘
+## workflow
+```
+   HTTP Response Received >>> Content-Type: html/json/xml >>> 1. Regex Check 2. LLM Analysis (with body sample) >> Deduplication Check  (Hash: URL + Issue Name) >>>  Add to Burp Issues
 
+   HTTP Response Received >>> Content-Type: javascript >>> JS Endpoint Extraction >> IDOR Testing (ID replacement) >>>  Add to Burp Issues >> Deduplication Check  (Hash: URL + Issue Name) >>>  Add to Burp Issues
+```
 ## enjoy!!!!
 
 # I welcome your questions in the Issues section
