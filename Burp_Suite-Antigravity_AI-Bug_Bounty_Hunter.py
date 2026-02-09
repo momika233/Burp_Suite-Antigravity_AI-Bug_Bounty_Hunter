@@ -638,6 +638,8 @@ class BurpExtender(IBurpExtender, IHttpListener, IScannerCheck):
         return u"""
 You are a senior bug bounty hunter with 10+ years experience.
 
+You have mastered all the vulnerability mining cases of BugBounty, BugBountyTips, Hackers, One Pentester, BugBountyhunting, Hacktivs Cybersecurity across the entire network
+
 You are analyzing HTTP traffic for security vulnerabilities.
 You have access to request metadata AND a sample of the response body.
 
@@ -675,7 +677,7 @@ Metadata + Response Sample:
     def ask_ai(self, prompt):
         try:
             payload = json.dumps({
-                "model": "claude-opus-4-5-thinking",
+                "model": "claude-opus-4-6-thinking",
                 "max_tokens": 1024,
                 "temperature": 0.2,
                 "messages": [{"role": "user", "content": prompt}]
