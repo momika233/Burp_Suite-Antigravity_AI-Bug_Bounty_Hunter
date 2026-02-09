@@ -21,6 +21,12 @@
 
    HTTP Response Received >>> Content-Type: javascript >>> JS Endpoint Extraction >> IDOR Testing (ID replacement) >>>  Add to Burp Issues >> Deduplication Check  (Hash: URL + Issue Name) >>>  Add to Burp Issues
 ```
+## 2026.2.9 
+## 1. Add prompt words
+### You have mastered all the vulnerability mining cases of BugBounty, BugBountyTips, Hackers, One Pentester, BugBountyhunting, Hacktivs Cybersecurity across the entire network
+## 2. Modify the model
+### claude-opus-4-6-thinking
+
 ## enjoy!!!!
 
 # I welcome your questions in the Issues section
